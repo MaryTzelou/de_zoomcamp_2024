@@ -36,16 +36,6 @@ python ingest_data_hw.py \
   --table_name=green_taxi_trips \
   --url=${URL}
 
-
-
-SELECT dro."Zone", SUM(tt."tip_amount")
-FROM public.green_taxi_trips AS tt
-INNER JOIN public.zones AS pu ON tt."PULocationID" = pu."LocationID"
-INNER JOIN public.zones AS dro ON tt."DOLocationID" = dro."LocationID"
-WHERE pu."Zone" <> 'Astoria'
-  AND CAST(lpep_pickup_datetime AS DATE) BETWEEN '2019-09-01' AND '2019-09-30'
-GROUP BY dro."Zone"
-ORDER BY 2 DESC
-
--- For the passengers picked up in September 2019 in the zone name Astoria 
--- which was the drop off zone that had the largest tip?
+terraform init
+terraform plan
+terraform apply
